@@ -28,9 +28,6 @@
           <span class="hidden md:inline">{{ lang === 'en' ? '中文' : 'English' }}</span>
         </button>
 
-        <RouterLink to="/admin" class="inline-flex items-center gap-1 opacity-80 hover:opacity-100">
-          <span>👤</span><span>Admin Login</span>
-        </RouterLink>
       </div>
     </div>
   </header>
