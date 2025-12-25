@@ -10,6 +10,7 @@ const toggleLang = () => {
 
 <template>
   <NavBar :lang="lang" :toggleLang="toggleLang" />
-  <!-- 关键：把 lang 传给 Home.vue -->
-  <RouterView :lang="lang" />
+  <RouterView v-slot="{ Component }">
+    <component :is="Component" :lang="lang" />
+  </RouterView>
 </template>

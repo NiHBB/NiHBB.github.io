@@ -18,7 +18,7 @@ export type Project = {
 const md = new MarkdownIt({ html: true, linkify: true })
 
 // 通过 Vite 的按需导入，把 md 文件打包进来
-const modules = import.meta.glob('../content/projects/*.md', { as: 'raw', eager: true })
+const modules = import.meta.glob('../content/projects/*.md', { query: '?raw', import: 'default', eager: true })
 
 let cache: Project[] | null = null
 

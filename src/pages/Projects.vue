@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { useProjects } from '@/composables/useProjects'
 import Fuse from 'fuse.js'
 import { useHead } from '@unhead/vue'
+import ProjectCard from '@/components/ProjectCard.vue'
 
 useHead({ title: 'Projects · Portfolio' })
 
@@ -33,8 +34,9 @@ const filtered = computed(() => {
       </div>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6">
-      <ProjectCard v-for="p in filtered" :key="p.slug" :p="p" />
+    <div v-if="filtered.length" class="grid md:grid-cols-2 gap-6">
+      <ProjectCard v-for="p in filtered" :key="p.slug" :project="p" />
     </div>
+    <p v-else class="text-sm text-gray-500">暂无匹配的项目。</p>
   </section>
 </template>

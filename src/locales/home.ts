@@ -13,10 +13,16 @@ export const homeMessages = {
     contact: "Mail",
     projectsData: [
       {
-        image: "/project1.jpg",
-        title: "Development Through Debt",
-        description: "Exploring the Impact of Chinese-financed Infrastructure Projects on Nairobi’s Urban Growth",
-        links: [{ label: "Report", url: "#" }]
+        image: "/project1.svg",
+        title: "Green Finance Tracker",
+        description: "Dashboarding ESG metrics and portfolio exposure for sustainability reporting.",
+        links: [{ label: "Demo", url: "https://qingpengnie.com/demo" }]
+      },
+      {
+        image: "/project1.svg",
+        title: "Circular Supply Insights",
+        description: "Lifecycle analysis to surface circular-economy opportunities in hardware supply chains.",
+        links: [{ label: "Read more", url: "https://qingpengnie.com/lca" }]
       },
       // 其他项目...
     ],
@@ -76,10 +82,10 @@ export const homeMessages = {
 
     experience: [
       "Lenovo (Beijing, China) | ESG Consulting Assistant (2025)",
-      "LSE x Practera × Rethink Resource (London, UK) | Consulting Intern (2025)",
+      "LSE × Practera × Rethink Resource (London, UK) | Consulting Intern (2025)",
       "Students Organising for Sustainability (London, UK) | Environmental Auditor (2024)",
-      "Royalsea Capital (Shanghai, China)) | Investment Assistant (2023)",
-      "Essence Securities (Guangzhou, China)) | Wealth Advisor Intern (2022)"
+      "Royalsea Capital (Shanghai, China) | Investment Assistant (2023)",
+      "Essence Securities (Guangzhou, China) | Wealth Advisor Intern (2022)"
     ],
     education: [
       "London School of Economics and Political Science (LSE) | MSc Environmental Economics & Climate Change | 2024 – 2025",
@@ -100,10 +106,16 @@ export const homeMessages = {
     contact: "邮箱",
     projectsData: [
       {
-        image: "/project1.jpg",
-        title: "债务驱动的发展",
-        description: "探讨中国融资的基础设施项目对内罗毕城市发展的影响",
-        links: [{ label: "报告", url: "#" }]
+        image: "/project1.svg",
+        title: "绿色金融仪表盘",
+        description: "可视化 ESG 指标与投资组合暴露，为可持续发展报告提供数据支撑。",
+        links: [{ label: "演示", url: "https://qingpengnie.com/demo" }]
+      },
+      {
+        image: "/project1.svg",
+        title: "循环供应链洞察",
+        description: "对硬件供应链做生命周期分析，挖掘循环经济提升空间。",
+        links: [{ label: "阅读", url: "https://qingpengnie.com/lca" }]
       },
       // 其他项目...
     ],
@@ -138,7 +150,7 @@ export const homeMessages = {
           },
           {
             title: "投资 & 经济影响分析",
-            detail: "Assessing market dynamics and policy effects"
+            detail: "评估市场动态与政策效果，量化投资影响"
           },
           {
             title: "战术资产配置策略",
@@ -162,7 +174,7 @@ export const homeMessages = {
     ],
     experience: [
       "联想（中国北京）| ESG咨询助理（2025届）",
-      "伦敦政治经济学院 × Practera × Rethink ",
+      "伦敦政经学院 × Practera × Rethink Resource（英国伦敦）| 咨询实习生（2025）",
       "学生可持续发展组织（英国伦敦）| 环境审计员（2024）",
       "皇家海资本（中国上海）| 投资助理（2023）",
       "广发证券（中国广州）| 财富顾问实习生（2022）"

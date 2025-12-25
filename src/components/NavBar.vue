@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 z-20 border-b bg-base-100/80 backdrop-blur">
+  <header class="sticky top-0 z-20 border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 text-gray-900 dark:text-gray-100 backdrop-blur">
     <div class="max-w-6xl mx-auto px-4 h-14 flex items-center relative">
       <!-- Left: Brand -->
       <RouterLink to="/" class="font-semibold text-lg">Qingpeng Nie</RouterLink>
@@ -7,10 +7,10 @@
       <!-- Center: Nav -->
       <nav class="absolute left-1/2 -translate-x-1/2 hidden sm:block">
         <ul class="flex items-center gap-8 text-sm">
-          <li><RouterLink to="/about" class="hover:opacity-80">About</RouterLink></li>
-          <li><RouterLink to="/projects" class="hover:opacity-80">Projects</RouterLink></li>
-          <li><RouterLink to="/skills" class="hover:opacity-80">Skills</RouterLink></li>
-          <li><RouterLink to="/contact" class="hover:opacity-80">Contact</RouterLink></li>
+          <li><RouterLink :to="{ path: '/', hash: '#about' }" class="hover:opacity-80">About</RouterLink></li>
+          <li><RouterLink :to="{ path: '/', hash: '#projects' }" class="hover:opacity-80">Projects</RouterLink></li>
+          <li><RouterLink :to="{ path: '/', hash: '#skills' }" class="hover:opacity-80">Skills</RouterLink></li>
+          <li><a href="mailto:qingpengnie@163.com" class="hover:opacity-80">Contact</a></li>
         </ul>
       </nav>
 
@@ -44,6 +44,7 @@ const props = defineProps<{
 const isDark = ref(false)
 function applyTheme(dark: boolean) {
   isDark.value = dark
+  document.documentElement.classList.toggle('dark', dark)
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
   localStorage.setItem('theme', dark ? 'dark' : 'light')
 }
@@ -52,4 +53,5 @@ onMounted(() => {
   const saved = localStorage.getItem('theme')
   applyTheme(saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches)
 })
+
 </script>

@@ -1,14 +1,6 @@
 <template>
-  <section class="flex flex-col md:flex-row items-center justify-center min-h-[70vh] px-4 md:px-6
+  <section id="about" class="flex flex-col md:flex-row items-center justify-center min-h-[70vh] px-4 md:px-6
                  bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-
-    <!-- 切换按钮 -->
-    <div class="absolute top-4 right-4">
-      <button @click="lang = lang === 'en' ? 'zh' : 'en'" 
-              class="px-3 py-1 border rounded">
-        {{ lang === 'en' ? '中文' : 'English' }}
-      </button>
-    </div>
 
     <!-- 左侧头像 -->
     <div class="mb-6 md:mb-0 md:mr-12 flex justify-center">
@@ -65,7 +57,7 @@
   </section>
 
   <!-- Projects Section -->
-  <section class="py-12 sm:py-16 bg-gray-50 dark:bg-gray-800">
+  <section id="projects" class="py-12 sm:py-16 bg-gray-50 dark:bg-gray-800">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
       <p class="text-gray-500 dark:text-gray-400 uppercase tracking-wide text-sm sm:text-base">{{ t('browseRecent') }}</p>
       <h2 class="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-gray-900 dark:text-gray-100">
@@ -87,7 +79,7 @@
  
 
   <!-- Skills Section -->
-  <section class="py-12 sm:py-16 bg-white dark:bg-gray-900">
+  <section id="skills" class="py-12 sm:py-16 bg-white dark:bg-gray-900">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
       <p class="text-gray-500 dark:text-gray-400 uppercase tracking-wide text-sm sm:text-base">{{ t('exploreMy') }}</p>
       <h2 class="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-gray-900 dark:text-gray-100">
@@ -135,7 +127,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch, withDefaults } from "vue"
+import { computed, withDefaults } from "vue"
 import ProjectCard from "../components/ProjectCard.vue"
 import { homeMessages } from "../locales/home"
 import linkedinIcon from "../assets/领英.svg"
@@ -151,69 +143,43 @@ const props = withDefaults(defineProps<{
   lang: 'en'
 })
 
-const lang = ref(props.lang)
+const lang = computed(() => props.lang)
 const currentMessages = computed(() => homeMessages[lang.value])
 const t = (key: keyof typeof homeMessages['en']) => currentMessages.value[key]
 const resumeLink = computed(() => (lang.value === "en" ? resumeEn : resumeZh))
 
-let mediaQuery: MediaQueryList | null = null
-const applyTheme = (e: MediaQueryListEvent | MediaQueryList) => {
-  if (e.matches) {
-    document.documentElement.classList.add("dark")
-  } else {
-    document.documentElement.classList.remove("dark")
-  }
-}
-
-watch(() => props.lang, (value) => {
-  lang.value = value
-})
-
-onMounted(() => {
-  mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-  applyTheme(mediaQuery)
-  mediaQuery.addEventListener("change", applyTheme)
-})
-
-onUnmounted(() => {
-  if (mediaQuery) {
-    mediaQuery.removeEventListener("change", applyTheme)
-  }
-})
-
-
 function openWeChat() {
-  const isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+  const isMobile = /Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)
 
   if (isMobile) {
-    window.location.href = "weixin://dl/chat?yourid"; // ← 改成你的微信号或邀请链接
+    window.location.href = "weixin://dl/chat?yourid" // ← 改成你的微信号或邀请链接
   } else {
-    const qrUrl = "weixin-qrcode.png"; // ← 改成你的二维码路径
+    const qrUrl = "/weixin-qrcode.svg"
 
-    const mask = document.createElement('div');
-    mask.style.position = 'fixed';
-    mask.style.top = '0';
-    mask.style.left = '0';
-    mask.style.width = '100%';
-    mask.style.height = '100%';
-    mask.style.background = 'rgba(0,0,0,0.6)';
-    mask.style.display = 'flex';
-    mask.style.alignItems = 'center';
-    mask.style.justifyContent = 'center';
-    mask.style.zIndex = '9999';
+    const mask = document.createElement('div')
+    mask.style.position = 'fixed'
+    mask.style.top = '0'
+    mask.style.left = '0'
+    mask.style.width = '100%'
+    mask.style.height = '100%'
+    mask.style.background = 'rgba(0,0,0,0.6)'
+    mask.style.display = 'flex'
+    mask.style.alignItems = 'center'
+    mask.style.justifyContent = 'center'
+    mask.style.zIndex = '9999'
 
-    const img = document.createElement('img');
-    img.src = qrUrl;
-    img.alt = '微信二维码';
-    img.style.maxWidth = '300px';
-    img.style.borderRadius = '12px';
-    img.style.boxShadow = '0 0 20px rgba(255,255,255,0.3)';
-    img.style.cursor = 'pointer';
+    const img = document.createElement('img')
+    img.src = qrUrl
+    img.alt = '微信二维码'
+    img.style.maxWidth = '300px'
+    img.style.borderRadius = '12px'
+    img.style.boxShadow = '0 0 20px rgba(255,255,255,0.3)'
+    img.style.cursor = 'pointer'
 
-    mask.onclick = () => mask.remove();
+    mask.onclick = () => mask.remove()
 
-    mask.appendChild(img);
-    document.body.appendChild(mask);
+    mask.appendChild(img)
+    document.body.appendChild(mask)
   }
 }
 </script>
